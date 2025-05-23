@@ -1,18 +1,13 @@
 import express, { RequestHandler } from 'express';
 import { authenticateJWT } from '../middleware/authMiddleware';
-import { requireAdmin } from '../middleware/adminMiddleware';
+import { getProfile, updateProfile } from '../controllers/userController';
 
 const router = express.Router();
 
-// Example protected route: get user profile
-router.get('/profile', authenticateJWT as RequestHandler, (req, res) => {
-  // req.user is set by the middleware
-  res.json({ user: req.user });
-});
+// Get user profile
+router.get('/profile', authenticateJWT as RequestHandler, getProfile as RequestHandler);
 
-// Example admin-only route
-router.get('/admin-area', authenticateJWT as RequestHandler, requireAdmin as RequestHandler, (req, res) => {
-  res.json({ message: 'Welcome, admin!', user: req.user });
-});
+// Update user profile
+router.patch('/profile', authenticateJWT as RequestHandler, updateProfile as RequestHandler);
 
 export default router;

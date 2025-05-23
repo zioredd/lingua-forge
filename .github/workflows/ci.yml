@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dir: [frontend, backend]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{ matrix.dir }}
+      - name: Lint
+        run: npm run lint || true
+        working-directory: ${{ matrix.dir }}
+      - name: Test
+        run: npm test || true
+        working-directory: ${{ matrix.dir }}

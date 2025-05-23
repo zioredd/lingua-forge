@@ -24,6 +24,13 @@ lingua-forge/
 2. `cd frontend && npm install`
 3. See each subfolder README for details.
 
+## Workflow (Solo Developer)
+- Work directly on the `main` branch.
+- Create temporary branches for major features or experiments if needed.
+- Use `docs/backlog.md` as your personal todo list.
+- Run tests and lint scripts manually as needed.
+- Update docs as you go for future reference.
+
 ## Features
 - Secure OAuth2/JWT authentication
 - Adaptive AI learning engine

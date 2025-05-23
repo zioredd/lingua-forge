@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { loginUser } from '@/services/auth';
 
 
@@ -76,6 +77,7 @@ const errorStyle: React.CSSProperties = {
 };
 
 const LoginForm: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
@@ -105,6 +107,9 @@ const LoginForm: React.FC = () => {
       await loginUser({ email, password });
       setSuccess('Login successful!');
       setError('');
+      setTimeout(() => {
+        router.push('/profile');
+      }, 600);
     } catch (err: any) {
       setError(err.message || 'Login failed.');
       setSuccess('');

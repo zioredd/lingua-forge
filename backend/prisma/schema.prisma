@@ -11,16 +11,19 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(uuid())
-  email       String   @unique
-  password    String?
-  name        String?
-  avatarUrl   String?
-  provider    String   @default("local")
-  googleId    String?  @unique
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  role        String   @default("user")
+  id             String   @id @default(uuid())
+  email          String   @unique
+  password       String?
+  name           String?
+  avatarUrl      String?
+  bio            String?
+  targetLanguage String?
+  dailyXpGoal    Int?
+  provider       String   @default("local")
+  googleId       String?  @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  role           String   @default("user")
   passwordResetTokens PasswordResetToken[]
 }
 
